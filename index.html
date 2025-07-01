@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>簡單計算功能</title>
   <style>
     * { box-sizing: border-box; }
@@ -57,7 +57,7 @@
       text-align: center;
       font-size: 1.2rem;
       margin: 1.5rem 0;
-      transition: font-size 0.3s ease, color 0.3s ease;
+      transition: font-size 0.3s ease;
     }
 
     .total.highlight {
@@ -90,11 +90,32 @@
   <div class="menu">
     <h2>簡單計算功能</h2>
 
-    <!-- ✅ 每個品項都照這個格式 -->
+    <!-- 品項區塊開始 -->
     <div class="item">
-      <span class="name">雞排</span>
-      <span class="price">NT$85</span>
-      <select>
+      <span>雞排</span>
+      <span>NT$85</span>
+      <select class="qty">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      <span class="subtotal">NT$0</span>
+    </div>
+
+    <!-- 其他品項照此格式複製 -->
+
+    <div class="item">
+      <span>110品項</span>
+      <span>NT$110</span>
+      <select class="qty">
         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
         <option value="3">3</option><option value="4">4</option><option value="5">5</option>
         <option value="6">6</option><option value="7">7</option><option value="8">8</option>
@@ -104,9 +125,9 @@
     </div>
 
     <div class="item">
-      <span class="name">110品項</span>
-      <span class="price">NT$110</span>
-      <select>
+      <span>70品項</span>
+      <span>NT$70</span>
+      <select class="qty">
         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
         <option value="3">3</option><option value="4">4</option><option value="5">5</option>
         <option value="6">6</option><option value="7">7</option><option value="8">8</option>
@@ -115,8 +136,43 @@
       <span class="subtotal">NT$0</span>
     </div>
 
-    <!-- 🛒 你可以複製更多品項 -->
+    <div class="item">
+      <span>55品項</span>
+      <span>NT$55</span>
+      <select class="qty">
+        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
+        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
+        <option value="9">9</option><option value="10">10</option>
+      </select>
+      <span class="subtotal">NT$0</span>
+    </div>
 
+    <div class="item">
+      <span>45品項</span>
+      <span>NT$45</span>
+      <select class="qty">
+        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
+        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
+        <option value="9">9</option><option value="10">10</option>
+      </select>
+      <span class="subtotal">NT$0</span>
+    </div>
+
+    <div class="item">
+      <span>35品項</span>
+      <span>NT$35</span>
+      <select class="qty"> <!-- 以下選項重複 -->
+        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
+        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
+        <option value="9">9</option><option value="10">10</option>
+      </select>
+      <span class="subtotal">NT$0</span>
+    </div>
+
+    <!-- 總金額 -->
     <div class="total" id="totalWrapper">
       總金額：<span id="total">NT$0</span>
     </div>
@@ -125,56 +181,36 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const items = document.querySelectorAll(".item");
-      const totalDisplay = document.getElementById("total");
-      const totalWrapper = document.getElementById("totalWrapper");
-      const resetBtn = document.getElementById("reset");
+    const prices = [85, 110, 70, 55, 45, 35];
+    const qtySelects = document.querySelectorAll(".qty");
+    const subtotalDisplays = document.querySelectorAll(".subtotal");
+    const totalDisplay = document.getElementById("total");
+    const totalWrapper = document.getElementById("totalWrapper");
+    const resetBtn = document.getElementById("reset");
 
-      function extractPrice(text) {
-        const match = text.match(/NT\$?(\d+)/);
-        return match ? parseInt(match[1], 10) : 0;
-      }
-
-      function calculateTotal() {
-        let total = 0;
-
-        items.forEach(item => {
-          const priceText = item.querySelector(".price").textContent;
-          const qty = parseInt(item.querySelector("select").value, 10);
-          const price = extractPrice(priceText);
-          const subtotal = qty * price;
-
-          item.querySelector(".subtotal").textContent = `NT
-
-{subtotal}`;
-          total += subtotal;
-        });
-
-        totalDisplay.textContent = `NT
-
-{total}`;
-        totalWrapper.classList.add("highlight");
-      }
-
-      items.forEach(item => {
-        const select = item.querySelector("select");
-        ["input", "change", "blur"].forEach(evt =>
-          select.addEventListener(evt, calculateTotal)
-        );
+    function calculateTotal() {
+      let total = 0;
+      qtySelects.forEach((select, index) => {
+        const quantity = parseInt(select.value);
+        const subtotal = quantity * prices[index];
+        subtotalDisplays[index].textContent = `NT$${subtotal}`;
+        total += subtotal;
       });
+      totalDisplay.textContent = `NT$${total}`;
+      totalWrapper.classList.add("highlight");
+    }
 
-      resetBtn.addEventListener("click", () => {
-        items.forEach(item => {
-          item.querySelector("select").value = "0";
-        });
-        calculateTotal();
-        totalWrapper.classList.remove("highlight");
-        setTimeout(() => totalWrapper.classList.add("highlight"), 50);
-      });
-
-      calculateTotal();
+    qtySelects.forEach(select => {
+      select.addEventListener("input", calculateTotal);
     });
+
+    resetBtn.addEventListener("click", () => {
+      qtySelects.forEach(select => select.value = "0");
+      calculateTotal();
+      totalWrapper.classList.remove("highlight");
+    });
+
+    calculateTotal();
   </script>
 </body>
 </html>
