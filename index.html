@@ -90,83 +90,25 @@
   <div class="menu">
     <h2>簡單計算功能</h2>
 
+    <!-- 可複製的品項格式 -->
     <div class="item">
       <span>雞排</span><span>NT$85</span>
-      <select class="qty"><option>0</option><option>1</option><option>2</option></select>
+      <select class="qty">
+        ${[...Array(11)].map((_, i) => `<option value="${i}">${i}</option>`).join("")}
+      </select>
       <span class="subtotal">NT$0</span>
     </div>
-    <div class="item">
-      <span>110品項</span><span>NT$110</span>
-      <select class="qty"><option>0</option><option>1</option><option>2</option></select>
+    <div class="item"><span>110品項</span><span>NT$110</span>
+      <select class="qty">${[...Array(11)].map((_, i) => `<option value="${i}">${i}</option>`).join("")}</select>
       <span class="subtotal">NT$0</span>
     </div>
-    <div class="item">
-      <span>70品項</span><span>NT$70</span>
-      <select class="qty"><option>0</option><option>1</option><option>2</option></select>
+    <div class="item"><span>70品項</span><span>NT$70</span>
+      <select class="qty">${[...Array(11)].map((_, i) => `<option value="${i}">${i}</option>`).join("")}</select>
       <span class="subtotal">NT$0</span>
     </div>
-    <div class="item">
-      <span>55品項</span><span>NT$55</span>
-      <select class="qty"><option>0</option><option>1</option><option>2</option></select>
+    <div class="item"><span>55品項</span><span>NT$55</span>
+      <select class="qty">${[...Array(11)].map((_, i) => `<option value="${i}">${i}</option>`).join("")}</select>
       <span class="subtotal">NT$0</span>
     </div>
-    <div class="item">
-      <span>45品項</span><span>NT$45</span>
-      <select class="qty"><option>0</option><option>1</option><option>2</option></select>
-      <span class="subtotal">NT$0</span>
-    </div>
-    <div class="item">
-      <span>35品項</span><span>NT$35</span>
-      <select class="qty"><option>0</option><option>1</option><option>2</option></select>
-      <span class="subtotal">NT$0</span>
-    </div>
-
-    <div class="total" id="totalWrapper">
-      總金額：<span id="total">NT$0</span>
-    </div>
-
-    <button id="reset">清空</button>
-  </div>
-
-  <script>
-    const prices = [85, 110, 70, 55, 45, 35];
-    const qtySelects = document.querySelectorAll(".qty");
-    const subtotalDisplays = document.querySelectorAll(".subtotal");
-    const totalDisplay = document.getElementById("total");
-    const totalWrapper = document.getElementById("totalWrapper");
-    const resetBtn = document.getElementById("reset");
-
-    function calculateTotal() {
-      setTimeout(() => {
-        let total = 0;
-        qtySelects.forEach((select, index) => {
-          const quantity = parseInt(select.value);
-          const subtotal = quantity * prices[index];
-          subtotalDisplays[index].textContent = `NT
-
-{subtotal}`;
-          total += subtotal;
-        });
-        totalDisplay.textContent = `NT
-
-{total}`;
-        totalWrapper.classList.add("highlight");
-      }, 0);
-    }
-
-    qtySelects.forEach(select => {
-      select.addEventListener("input", calculateTotal);
-      select.addEventListener("change", calculateTotal);
-      select.addEventListener("blur", calculateTotal);
-    });
-
-    resetBtn.addEventListener("click", () => {
-      qtySelects.forEach(select => select.value = "0");
-      calculateTotal();
-      totalWrapper.classList.remove("highlight");
-    });
-
-    calculateTotal();
-  </script>
-</body>
-</html>
+    <div class="item"><span>45品項</span><span>NT$45</span>
+      <select class="qty">${[...Array(11)].map((_, i) => `<option value="${
