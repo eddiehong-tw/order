@@ -11,91 +11,65 @@
       background-color: #f2f2f2;
       margin: 0;
       padding: 1rem;
-      font-size: 1.1rem;
+      font-size: 1.25rem;
     }
     .menu {
       max-width: 768px;
       margin: auto;
       background: #fff;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
     h2 {
       text-align: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
     }
     .item {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
-      gap: 0.5rem;
+      margin-bottom: 2rem;
+      gap: 0.75rem;
     }
     .item span,
     .item select,
     .subtotal {
-      flex: 1 1 100px;
+      flex: 1 1 120px;
       text-align: center;
     }
     .price {
-      min-width: 80px;
+      min-width: 90px;
     }
     .item select {
-      padding: 0.5rem;
-      font-size: 1rem;
+      padding: 0.6rem;
+      font-size: 1.1rem;
     }
     .subtotal {
       font-weight: bold;
     }
     .total {
       text-align: center;
-      font-size: 1.2rem;
-      margin: 1.5rem 0;
+      font-size: 1.6rem;
+      margin: 2rem 0;
       transition: font-size 0.3s ease;
     }
     .total.highlight {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       color: #d11141;
     }
     button {
-      padding: 0.75rem 1.5rem;
-      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      font-size: 1.4rem;
       border: none;
       background-color: #333;
       color: #fff;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
       margin: 1rem auto 0;
       display: block;
-    }
-    @media (min-width: 768px) {
-      .item {
-        gap: 1rem;
-        flex-wrap: nowrap;
-      }
-      .item span,
-      .item select,
-      .subtotal {
-        flex: 0 0 25%;
-      }
-      .menu {
-        padding: 2rem;
-      }
-      h2 {
-        font-size: 1.75rem;
-      }
-      .total {
-        font-size: 1.5rem;
-      }
-      .total.highlight {
-        font-size: 2rem;
-      }
-      button {
-        font-size: 1.3rem;
-      }
     }
   </style>
 </head>
