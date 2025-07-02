@@ -11,9 +11,10 @@
       background-color: #f2f2f2;
       margin: 0;
       padding: 1rem;
+      font-size: 1.1rem;
     }
     .menu {
-      max-width: 720px;
+      max-width: 768px;
       margin: auto;
       background: #fff;
       padding: 1.5rem;
@@ -23,6 +24,7 @@
     h2 {
       text-align: center;
       margin-bottom: 1.5rem;
+      font-size: 1.6rem;
     }
     .item {
       display: flex;
@@ -37,6 +39,9 @@
     .subtotal {
       flex: 1 1 100px;
       text-align: center;
+    }
+    .price {
+      min-width: 80px;
     }
     .item select {
       padding: 0.5rem;
@@ -57,7 +62,7 @@
     }
     button {
       padding: 0.75rem 1.5rem;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       border: none;
       background-color: #333;
       color: #fff;
@@ -66,11 +71,30 @@
       margin: 1rem auto 0;
       display: block;
     }
-    @media (min-width: 600px) {
+    @media (min-width: 768px) {
+      .item {
+        gap: 1rem;
+        flex-wrap: nowrap;
+      }
       .item span,
       .item select,
       .subtotal {
-        flex: 1;
+        flex: 0 0 25%;
+      }
+      .menu {
+        padding: 2rem;
+      }
+      h2 {
+        font-size: 1.75rem;
+      }
+      .total {
+        font-size: 1.5rem;
+      }
+      .total.highlight {
+        font-size: 2rem;
+      }
+      button {
+        font-size: 1.3rem;
       }
     }
   </style>
