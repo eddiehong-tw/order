@@ -79,10 +79,8 @@
   <div class="menu">
     <h2>簡單計算功能</h2>
 
-    <!-- 所有品項 -->
     <div class="item">
-      <span>雞排</span>
-      <span>NT$85</span>
+      <span>雞排</span><span>NT$85</span>
       <select class="qty">
         <option value="0">0</option><option value="1">1</option><option value="2">2</option>
         <option value="3">3</option><option value="4">4</option><option value="5">5</option>
@@ -93,80 +91,59 @@
     </div>
 
     <div class="item">
-      <span>110品項</span>
-      <span>NT$110</span>
-      <select class="qty">
-        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
-        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
-        <option value="9">9</option><option value="10">10</option>
-      </select>
-      <span class="subtotal">NT$0</span>
+      <span>110品項</span><span>NT$110</span>
+      <select class="qty">...</select><span class="subtotal">NT$0</span>
     </div>
 
     <div class="item">
-      <span>70品項</span>
-      <span>NT$70</span>
-      <select class="qty">
-        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
-        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
-        <option value="9">9</option><option value="10">10</option>
-      </select>
-      <span class="subtotal">NT$0</span>
+      <span>70品項</span><span>NT$70</span>
+      <select class="qty">...</select><span class="subtotal">NT$0</span>
     </div>
 
     <div class="item">
-      <span>55品項</span>
-      <span>NT$55</span>
-      <select class="qty">
-        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
-        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
-        <option value="9">9</option><option value="10">10</option>
-      </select>
-      <span class="subtotal">NT$0</span>
+      <span>55品項</span><span>NT$55</span>
+      <select class="qty">...</select><span class="subtotal">NT$0</span>
     </div>
 
     <div class="item">
-      <span>45品項</span>
-      <span>NT$45</span>
-      <select class="qty">
-        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
-        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
-        <option value="9">9</option><option value="10">10</option>
-      </select>
-      <span class="subtotal">NT$0</span>
+      <span>45品項</span><span>NT$45</span>
+      <select class="qty">...</select><span class="subtotal">NT$0</span>
     </div>
 
     <div class="item">
-      <span>35品項</span>
-      <span>NT$35</span>
-      <select class="qty">
-        <option value="0">0</option><option value="1">1</option><option value="2">2</option>
-        <option value="3">3</option><option value="4">4</option><option value="5">5</option>
-        <option value="6">6</option><option value="7">7</option><option value="8">8</option>
-        <option value="9">9</option><option value="10">10</option>
-      </select>
-      <span class="subtotal">NT$0</span>
+      <span>35品項</span><span>NT$35</span>
+      <select class="qty">...</select><span class="subtotal">NT$0</span>
     </div>
 
     <div class="total" id="totalWrapper">
       總金額：<span id="total">NT$0</span>
     </div>
 
-    <button id="reset">清空</button>
+    <button id="reset" onclick="resetForm()">清空</button>
   </div>
 
   <script>
+    function resetForm() {
+      var qtySelects = document.querySelectorAll(".qty");
+      var subtotalDisplays = document.querySelectorAll(".subtotal");
+      var totalDisplay = document.getElementById("total");
+      var totalWrapper = document.getElementById("totalWrapper");
+
+      for (var i = 0; i < qtySelects.length; i++) {
+        qtySelects[i].value = "0";
+        subtotalDisplays[i].textContent = "NT$0";
+      }
+
+      totalDisplay.textContent = "NT$0";
+      totalWrapper.className = "total";
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       var prices = [85, 110, 70, 55, 45, 35];
       var qtySelects = document.querySelectorAll(".qty");
       var subtotalDisplays = document.querySelectorAll(".subtotal");
       var totalDisplay = document.getElementById("total");
       var totalWrapper = document.getElementById("totalWrapper");
-      var resetBtn = document.getElementById("reset");
 
       function calculateTotal() {
         var total = 0;
@@ -184,8 +161,8 @@
         qtySelects[i].addEventListener("change", calculateTotal);
       }
 
-      resetBtn.addEventListener("click", function () {
-        for (var i = 0; i < qtySelects.length; i++) {
-          qtySelects[i].value = "0";
-        }
-        calculateTotal();
+      calculateTotal();
+    });
+  </script>
+</body>
+</html>
